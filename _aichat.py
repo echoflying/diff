@@ -1,3 +1,4 @@
+import streamlit as st
 from zhipuai import ZhipuAI
 import openai
 from volcenginesdkarkruntime import Ark
@@ -12,22 +13,22 @@ class LLM_ai:
     _MODELS = {
         "zhipuai": {"url": "",   # SDK use default
                     "model": "glm-4-flash",
-                    "key": "3042e500736dc267a9ff23dd323be0e2.QFR0jHfrGHHfenme",
+                    "key": "zhipuai-key",
                     "max_tokens": 8000,
                     },
         "kimi": {"url": "https://api-sg.moonshot.ai/v1",   # use openAI SDK
                     "model": "moonshot-v1-8k",
-                    "key": "sk-czQ8MFRZQc5o1PVRSiPBlCuReupzfuVwKEJztUOMm7eAlSu6",
+                    "key": "sk-kimi-key",
                     "max_tokens": 8000,
                     },
         "ark": {"url": "https://ark.cn-beijing.volces.com/api/v3",    # 火山方舟大模型，抖音，豆包，扣子是一家
                     "model": "ep-20240929221043-jsbgc",
-                    "key": "575007a8-66e2-43e5-90f9-e699c3345736",
+                    "key": "ark-key",
                     "max_tokens": 4000,
                     },
         "claude": {"url": "https://api.gptapi.us/v1/chat/completions",       # Legend's testing bed
                     "model": "claude-3-5-sonnet",
-                    "key": "sk-vUVDEyOcoNDnUMtB3aF3FeFcD5534a8f89De99CcCcE8F7B2",
+                    "key": "sk-claud-key",
                     "max_tokens": 8000,
                     },
     }
@@ -37,6 +38,7 @@ class LLM_ai:
     
     def __init__(self, llm: str, model=""):
         self._llm = llm
+        self._MODELS[llm]["key"] = st.secrets.ai_keys[llm]
 
         if llm == "zhipuai":
             self._client = ZhipuAI(api_key=self._MODELS[llm]["key"])
