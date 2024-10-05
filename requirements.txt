@@ -1,6 +1,5 @@
 streamlit
 numpy
-difflib
 volcenginesdkarkruntime
 openai
 zhipuai
