@@ -1,5 +1,5 @@
 streamlit
 numpy
-volcenginesdkarkruntime
+volcengine-python-sdk
 openai
 zhipuai
