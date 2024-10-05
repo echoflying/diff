@@ -394,7 +394,7 @@ if not env.is_workspace_ready:
 AUTO_SAVE_INTERVAL = 60
 @st.fragment(run_every = AUTO_SAVE_INTERVAL)
 def save_workspace():
-    print(f"inside save workspace: working_step={env["working_step"]} : changed={st.session_state.is_changed}")
+    print(f"inside save workspace: working_step={env.working_step} : changed={st.session_state.is_changed}")
     if env["working_step"] == 0:
         return
         
