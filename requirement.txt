@@ -1,0 +1,6 @@
+streamlit
+numpy
+zhipuai
+sqlite3
+volcenginesdkarkruntime
+openai
