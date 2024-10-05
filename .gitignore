@@ -2,6 +2,7 @@ ai_keys.toml
 *.db
 *.db*
 **/.vscode
+**/.streamlit
 **/__pycache__
 **/.devcontainer
 settings.json
