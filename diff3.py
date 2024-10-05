@@ -1,4 +1,4 @@
-import sys, hashlib
+import os, hashlib
 import sqlite3, json
 import streamlit as st
 import pandas as pd
@@ -10,7 +10,9 @@ from datetime import datetime, timedelta
 import _difflines as df    # type: ignore
 import _aichat as aichat   # type: ignore
 
-DB_FILE = "d:\\home\\other\\py\\diff\\diff3.db"
+#current_directory = os.getcwd()
+#st.write(current_directory)
+DB_FILE = "diff3.db"
 
 
 # global environment store into st.session_state
