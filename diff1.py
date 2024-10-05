@@ -4,16 +4,10 @@ import sqlite3
 import json
 import streamlit as st
 
-
-# 将包的路径添加到 sys.path 中
-my_package_path = 'd:\\home\\other\\py'
-if my_package_path not in sys.path:
-    sys.path.append(my_package_path)
-
 # local package
-from c_package import difflines as df # type: ignore
+import _difflines as df # type: ignore
 
-DB_FILE = "d:\\home\\other\\py\\diff_workspace.db"
+DB_FILE = "diff1.db"
 
 
 # difflib information resources:
