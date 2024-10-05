@@ -1,10 +1,7 @@
-import os, hashlib
+import hashlib
 import sqlite3, json
 import streamlit as st
-import pandas as pd
-import numpy as np
 import time
-from datetime import datetime, timedelta
 
 # local module
 import _difflines as df    # type: ignore

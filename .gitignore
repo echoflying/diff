@@ -1,5 +1,7 @@
 ai_keys.toml
 *.db
 *.db*
-.vscode\
-__pycache__\
+**/.vscode
+**/__pycache__
+**/.devcontainer
+settings.json

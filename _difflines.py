@@ -1,13 +1,6 @@
 import sys
 import numpy as np
 import difflib
-from typing import List, Tuple
-import inspect
-
-
-def error_position():
-    return f"{__file__} : {inspect.currentframe().f_lineno}"
-
 
 # 算法说明：
 # 1 用矩阵存储所有aa/bb中字符串比较的相似度
@@ -115,11 +108,9 @@ def diff_lines(aa:list[str], bb:list[str], RATIO_SIMILAR = 40):
         elif u>c and l>c:               # two bigger than other one, go down first
             path_x[i,j] = "d"
         elif c == l or c == u:                    # wonn't happen, c is never bigger than u or l
-            print(error_position())
-            sys.exit(1)
+            raise RuntimeError("c never gigger than u or l")
         else:
-            print(error_position())
-            sys.exit(1)
+            raise RuntimeError("never be here")
         # print(f"path_x[i,j]=[{i},{j}] -- ucl = {u},{l},{c} - path = {path_x[i,j]}")
 
         # form operation code list
@@ -135,8 +126,7 @@ def diff_lines(aa:list[str], bb:list[str], RATIO_SIMILAR = 40):
             ops.append(["i", i,i, j,j+1])  # insert for go right
             j += 1
         else:
-            print(error_position())
-            sys.exit(1)
+            raise ValueError("never be here")
 
         all_done = False
         while i == len_aa or j == len_bb:  # touch the boundary
@@ -153,14 +143,12 @@ def diff_lines(aa:list[str], bb:list[str], RATIO_SIMILAR = 40):
                 ops.append(["d", i,i+1, j,j])  # go down = delete
                 i += 1
             else:
-                print(error_position())
-                sys.exit(1)
+                raise AssertionError("never be here")
         if all_done:
             break   # quit while
 
         if i>= len_aa or j>= len_bb:
-            print(error_position())
-            sys.exit(1)
+            raise AssertionError("never be here")
     # end while
 
     # for debug
@@ -216,8 +204,7 @@ def combine_changed_lines(list1:list[str], list2:list[str], change_op):
             result.append(["i", list2[j1], ""])  # insert
             #print(list2[j1])
         else:
-            print(  f"{error_position()}, current op_code: {op_code}") #error should not happen
-            sys.exit(1)
+            raise ValueError(f"current op_code: {op_code}")     #error should not happen
     return result
 
 
@@ -280,7 +267,7 @@ def change_oneline_to_html(line, hilight = False) -> str:
     elif line[0] == "s":                 # similar
         result = result + change_inline_op_to_html(line[2], hilight)
     else:
-        raise RuntimeError(f"Never be here: {__file__} : {inspect.currentframe().f_lineno}")
+        raise ValueError("never ve here")
     return result
 
 
@@ -313,11 +300,9 @@ def change_inline_op_to_html(lines, hilight_first = False) -> str:
             result = result + insert(line[1])
             is_first = False
         elif line[0] == "s":                 # no similar inline
-            msg = f"Never be here: {__file__} : {inspect.currentframe().f_lineno}"
-            raise RuntimeError(msg)
+            raise ValueError("wrong line[0] = {line[0]}")
         else:                                # bad op-code
-            msg = f"Never be here: {__file__} : {inspect.currentframe().f_lineno}"
-            raise RuntimeError(msg)
+            raise ValueError("wrong line[0] = {line[0]}")
     return result
 
 def change_lines_to_html(lines):
